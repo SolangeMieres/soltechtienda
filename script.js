@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // SELECTORES DE ELEMENTOS
     const productGrid = document.getElementById('product-grid');
     
-    // *** PROTECCIÓN CRÍTICA CONTRA NULL (Error en contacto.html) ***
+    // *** PROTECCIÓN CRÍTICA CONTRA NULL (Soluciona el error en contacto.html) ***
     // Si no hay grilla de productos en la página (ej: página de Contacto), salimos.
     if (!productGrid) {
         console.log("No hay grilla de productos en esta página. Finalizando lógica de filtros.");
