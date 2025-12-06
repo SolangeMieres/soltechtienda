@@ -60,16 +60,13 @@ if (installButton) {
 }
 
 
-// =========================================================
-// 3. LÓGICA DE FILTROS Y ORDENAMIENTO (Dentro de DOMContentLoaded)
-// =========================================================
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Soltech Store cargada correctamente. Filtros y lógica de productos activados.");
 
     // SELECTORES DE ELEMENTOS
     const productGrid = document.getElementById('product-grid');
     
-    // *** PROTECCIÓN CONTRA NULL: Si no hay grilla (ej: en contacto.html), salimos. ***
+    // *** SOLUCIÓN AL ERROR EN LÍNEA 71 (Protección contra NULL en contacto.html) ***
     if (!productGrid) {
         console.log("No hay grilla de productos en esta página. Finalizando lógica de filtros.");
         return; 

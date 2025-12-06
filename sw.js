@@ -1,15 +1,13 @@
-// Archivo: sw.js (Service Worker)
-// Versión actual de la caché
-const CACHE_NAME = 'soltech-cache-v1';
-
-// Recursos a precargar
+// Archivo: sw.js
+const CACHE_NAME = 'soltech-cache-v3';
 const urlsToCache = [
     '/',
     '/index.html',
     '/styles.css',
     '/script.js',
     '/contacto.html',
-    '/manifest.json', 
+    '/manifest.json' 
+    // Eliminamos todas las referencias a imágenes, íconos y favicon para evitar errores 404
 ];
 
 // Instalar el Service Worker y cachear los recursos estáticos
