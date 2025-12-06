@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Soltech Store</title>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
@@ -32,7 +35,7 @@
     <main class="contact-main">
         <section class="contact-card">
             <h2>Hablemos de Tecnología</h2>
-            <p>Envíanos tu consulta. Nos pondremos en contacto contigo en las próximas 24 horas.</p>
+            <p>Envíanos tu consulta. Te responderemos lo antes posible.</p>
             
             <div class="contact-details">
                 <p><i class="fas fa-envelope"></i> Correo Electrónico:</p>
@@ -48,10 +51,9 @@
                 <form action="https://formsubmit.co/soltechargentina10@gmail.com" method="POST" id="contactForm">
                     
                     <input type="hidden" name="_subject" value="Nueva Consulta Web - Soltech Store">
+                    
                     <input type="hidden" name="_captcha" value="false">
-                    
-                    <input type="hidden" name="_template" value="table">
-                    
+
                     <div class="form-group">
                         <label for="name">Nombre Completo</label>
                         <input type="text" id="name" name="Nombre" placeholder="Tu Nombre" required>
