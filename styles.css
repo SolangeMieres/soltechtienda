@@ -32,6 +32,59 @@ header {
     border-bottom: 1px solid #333;
 }
 
+/* =====================================
+   ESTILOS NEÓN PARA EL TÍTULO "SOLTECH"
+   ===================================== */
+
+.neon-soltech {
+    /* Color base y tipografía */
+    font-size: 5em; /* Tamaño grande y llamativo */
+    font-weight: 900;
+    color: #ff00ff; /* Color Fucsia Brillante */
+    text-shadow: 
+        /* Borde y sombra interior (Negro) */
+        0 0 5px rgba(0, 0, 0, 0.8),
+        /* Capa 1 de brillo (Fucsia oscuro) */
+        0 0 10px #cc00cc,
+        /* Capa 2 de brillo (Fucsia medio) */
+        0 0 20px #ff00ff,
+        /* Sombra exterior intensa (Fucsia claro) */
+        0 0 40px #ff33ff,
+        0 0 80px #ff33ff;
+    
+    /* Aplicar la animación */
+    animation: neon-flicker 1.5s ease-in-out infinite alternate;
+    margin-bottom: 20px;
+    letter-spacing: 2px; /* Espaciado para mejorar el efecto */
+}
+
+/* Reducir el tamaño de la animación en móviles */
+@media (max-width: 768px) {
+    .neon-soltech {
+        font-size: 3em;
+    }
+}
+
+/* Definición de la animación Keyframes (Movimiento de Parpadeo) */
+@keyframes neon-flicker {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 
+            /* Sombra Fuerte Normal */
+            0 0 10px #cc00cc,
+            0 0 20px #ff00ff,
+            0 0 40px #ff33ff;
+    }
+    50% {
+        opacity: 0.8; /* Ligeramente más tenue */
+        text-shadow: 
+            /* Sombra más tenue (efecto parpadeo) */
+            0 0 3px #cc00cc,
+            0 0 10px #ff00ff,
+            0 0 20px #ff33ff;
+    }
+}
+
 /* --- Estilos para el Logo --- */
 .logo-img {
     height: 40px; /* Tamaño fijo, ajusta si es necesario */
