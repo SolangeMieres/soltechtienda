@@ -2,7 +2,7 @@
     "name": "Soltech Store",
     "short_name": "Soltech",
     "description": "Tecnología y Electrodomésticos.",
-    "start_url": "/index.html",
+    "start_url": "/", 
     "display": "standalone",
     "background_color": "#121212",
     "theme_color": "#007bff",
