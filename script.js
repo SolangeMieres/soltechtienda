@@ -1,8 +1,10 @@
 // =========================================================
 // 1. REGISTRO DEL SERVICE WORKER (Debe ir fuera de DOMContentLoaded)
+// Esto asegura que la PWA sea detectable por el navegador.
 // =========================================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
+        // La ruta debe ser absoluta, apuntando a la raíz del sitio de Vercel
         navigator.serviceWorker.register('/sw.js') 
             .then(registration => {
                 console.log('ServiceWorker registrado con éxito:', registration);
@@ -16,11 +18,12 @@ if ('serviceWorker' in navigator) {
 
 // =========================================================
 // 2. LÓGICA PWA DEL BOTÓN (Debe ir fuera de DOMContentLoaded)
+// Controla el botón "Instalar App".
 // =========================================================
 let deferredPrompt;
 const installButton = document.getElementById('install-button');
 
-// Ocultamos el botón al inicio
+// Ocultamos el botón al inicio, solo se mostrará si el navegador lo permite
 if (installButton) {
     installButton.style.display = 'none';
 }
@@ -66,7 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // SELECTORES DE ELEMENTOS
     const productGrid = document.getElementById('product-grid');
     
-    // *** PROTECCIÓN CRÍTICA CONTRA EL ERROR NULL EN CONTACTO.HTML ***
+    // *** PROTECCIÓN CRÍTICA CONTRA NULL (Error en contacto.html) ***
+    // Si no hay grilla de productos en la página (ej: página de Contacto), salimos.
     if (!productGrid) {
         console.log("No hay grilla de productos en esta página. Finalizando lógica de filtros.");
         return; 
