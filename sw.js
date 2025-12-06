@@ -9,8 +9,7 @@ const urlsToCache = [
     '/styles.css',
     '/script.js',
     '/contacto.html',
-    // Puedes agregar rutas a tus imágenes principales si quieres precargarlas
-    '/images/logo_soltech.png' 
+    '/manifest.json', 
 ];
 
 // Instalar el Service Worker y cachear los recursos estáticos

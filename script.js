@@ -68,6 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // SELECTORES DE ELEMENTOS
     const productGrid = document.getElementById('product-grid');
+    
+    // *** PROTECCIÓN CONTRA NULL: Si no hay grilla (ej: en contacto.html), salimos. ***
+    if (!productGrid) {
+        console.log("No hay grilla de productos en esta página. Finalizando lógica de filtros.");
+        return; 
+    }
+    // **********************************************************************************
+
     const productCards = Array.from(productGrid.getElementsByClassName('product-card'));
     
     const categoryFilter = document.getElementById('categories-filter');
@@ -165,23 +173,4 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Aplicar filtros al inicio para asegurar el orden/visibilidad inicial
     applyAllFilters();
-
-// =========================================================
-// 5. MANEJO DE MENSAJE DE ÉXITO DE CONTACTO
-// =========================================================
-function checkUrlForSuccess() {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-        // Mostrar la alerta de éxito
-        alert('¡Gracias por contactarnos! Tu mensaje fue enviado con éxito. Te responderemos pronto.');
-        
-        // Limpiar el parámetro de la URL para que el mensaje no se muestre en futuras recargas
-        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-        window.history.replaceState({}, document.title, newUrl);
-    }
-}
-
-// Llama a esta función al cargar la página de inicio.
-// Puedes añadir la llamada dentro de tu DOMContentLoaded en script.js, o llamarla directamente aquí si está al final:
-checkUrlForSuccess();
 });
