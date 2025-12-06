@@ -294,3 +294,120 @@ footer {
     margin-top: 30px;
     border-top: 1px solid #333;
 }
+
+/* =====================================
+   ESTILOS ESPECÍFICOS PARA CONTACTO.HTML
+   ===================================== */
+
+/* Contenedor principal para centrar el contenido */
+.contact-main {
+    padding-top: 70px; /* Margen para el header fijo */
+    min-height: calc(100vh - 120px); /* Asegura que ocupe casi toda la pantalla */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: flex-start; /* Alineado al inicio (para que no esté flotando a la mitad) */
+    background-color: var(--bg-primary); /* Fondo oscuro principal */
+}
+
+/* Tarjeta principal de contacto (la caja negra) */
+.contact-card {
+    background-color: var(--bg-secondary); /* Fondo más oscuro para el contraste */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra elegante */
+    max-width: 600px;
+    width: 90%;
+    margin: 40px 0;
+    text-align: center;
+    border: 1px solid var(--accent-color); /* Borde sutil */
+}
+
+.contact-card h2 {
+    color: var(--accent-color); /* Título principal con el color de acento */
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    color: var(--text-color);
+    margin-bottom: 25px;
+}
+
+/* Contenedor de las opciones de contacto */
+.contact-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.contact-option {
+    padding: 20px;
+    background-color: #222; /* Fondo de cada opción de contacto */
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.2s;
+}
+
+.contact-option:hover {
+    transform: translateY(-3px); /* Efecto hover sutil */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contact-option h3 {
+    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.contact-option p {
+    color: #aaa;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+/* Estilos para los botones de contacto */
+.send-message-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Asegura que sea un enlace limpio */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Estilo específico para el botón de WhatsApp */
+.whatsapp-btn {
+    background-color: #25D366 !important;
+    color: #fff !important;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128C7E !important;
+}
+
+/* Estilo específico para el botón de Email */
+.email-btn {
+    background-color: var(--accent-color) !important;
+    color: #fff !important;
+}
+
+.email-btn:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Enlaces de correo/teléfono */
+.contact-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    display: block;
+    margin-top: 5px;
+}
