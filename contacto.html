@@ -1,0 +1,24 @@
+<link rel="manifest" href="manifest.json">
+
+<div class="contact-form-container">
+    <h3>Formulario de Contacto</h3>
+    
+    <form action="https://formsubmit.co/soltechargentina10@gmail.com" method="POST" id="contactForm">
+        
+        <input type="hidden" name="_subject" value="Nueva Consulta Web - Soltech Store">
+        
+        <div class="form-group">
+            <label for="name">Nombre Completo</label>
+            <input type="text" id="name" name="Nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="Mensaje" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="send-message-btn">Enviar Mensaje</button>
+    </form>
+</div>

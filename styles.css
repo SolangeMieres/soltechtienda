@@ -1,0 +1,296 @@
+/* Variables de color */
+:root {
+    --bg-primary: #121212; /* Fondo oscuro principal */
+    --bg-secondary: #1e1e1e; /* Fondo de secciones/tarjetas */
+    --accent-color: #007bff; /* Azul primario (para botones, etc) */
+    --text-color: #f0f0f0; /* Texto claro */
+    --text-muted: #aaaaaa; /* Texto secundario */
+}
+
+/* Estilos Globales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* --- Header y Navegación --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid #333;
+}
+
+/* --- Estilos para el Logo --- */
+.logo-img {
+    height: 40px; /* Tamaño fijo, ajusta si es necesario */
+    width: auto;
+    /* Esto centra la imagen dentro del div si el logo es más pequeño que el contenedor */
+    display: block; 
+}
+
+nav a {
+    margin: 0 15px;
+    color: var(--text-color);
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+.user-actions a {
+    margin-left: 20px;
+    color: var(--text-color);
+}
+
+.install-app-btn {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+
+/* --- Banner Principal (Hero) --- */
+.hero-banner {
+    background-color: #0d1a26; /* Un azul oscuro para el banner */
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero-banner h1 {
+    font-size: 3em;
+    color: #4CAF50; /* Color verde/lima para el título */
+    margin-bottom: 10px;
+}
+
+.hero-banner p {
+    color: var(--text-muted);
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.contact-section {
+    background-color: #1e2a36;
+    padding: 20px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.contact-section p {
+    margin: 5px 0;
+    color: var(--text-color);
+}
+
+.cta-contact {
+    display: block;
+    background-color: #25D366; /* Verde WhatsApp */
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+}
+
+.cta-contact:hover {
+    background-color: #1FAF54;
+}
+
+
+/* --- Contenedor Principal (Filtros y Productos) --- */
+.content-container {
+    display: flex;
+    gap: 30px;
+    padding: 30px 50px;
+}
+
+
+/* --- Sidebar de Filtros --- */
+.filters-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.filters-sidebar h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.filters-sidebar input[type="text"],
+.filters-sidebar select {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: var(--text-color);
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.price-range input {
+    width: calc(50% - 5px);
+    display: inline-block;
+}
+
+.price-range input:first-child {
+    margin-right: 10px;
+}
+
+.clear-filters {
+    width: 100%;
+    padding: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.clear-filters:hover {
+    background-color: #777;
+}
+
+
+/* --- Grilla de Productos --- */
+.product-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px; /* Altura fija para uniformidad */
+    object-fit: contain; /* Asegura que la imagen se vea completa */
+    margin-bottom: 15px;
+}
+
+.product-card h4 {
+    margin: 10px 0 5px 0;
+    font-size: 1.2em;
+}
+
+.product-card p {
+    color: var(--text-muted);
+    font-size: 0.9em;
+    flex-grow: 1; /* Para que todos tengan la misma altura si la descripción varía */
+}
+
+.price {
+    font-size: 1.5em;
+    color: #4CAF50; /* Color verde para precios */
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.add-to-cart-btn {
+    display: block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* --- Tags de Producto --- */
+.tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.tech-tag { background-color: #007bff; }
+.appliance-tag { background-color: #4CAF50; }
+.tool-tag { background-color: #dc3545; }
+
+
+/* --- Botón Flotante de WhatsApp --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25D366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #1e1e1e;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 20px 50px;
+    margin-top: 30px;
+    border-top: 1px solid #333;
+}
