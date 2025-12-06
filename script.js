@@ -1,10 +1,8 @@
 // =========================================================
 // 1. REGISTRO DEL SERVICE WORKER (Debe ir fuera de DOMContentLoaded)
-// Esto asegura que la PWA sea detectable por el navegador.
 // =========================================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        // La ruta debe ser absoluta, apuntando a la raíz del sitio de Vercel
         navigator.serviceWorker.register('/sw.js') 
             .then(registration => {
                 console.log('ServiceWorker registrado con éxito:', registration);
@@ -18,12 +16,11 @@ if ('serviceWorker' in navigator) {
 
 // =========================================================
 // 2. LÓGICA PWA DEL BOTÓN (Debe ir fuera de DOMContentLoaded)
-// Controla el botón "Instalar App".
 // =========================================================
 let deferredPrompt;
 const installButton = document.getElementById('install-button');
 
-// Ocultamos el botón al inicio, solo se mostrará si el navegador lo permite
+// Ocultamos el botón al inicio
 if (installButton) {
     installButton.style.display = 'none';
 }
@@ -60,13 +57,16 @@ if (installButton) {
 }
 
 
+// =========================================================
+// 3. LÓGICA DE FILTROS Y ORDENAMIENTO (Dentro de DOMContentLoaded)
+// =========================================================
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Soltech Store cargada correctamente. Filtros y lógica de productos activados.");
 
     // SELECTORES DE ELEMENTOS
     const productGrid = document.getElementById('product-grid');
     
-    // *** SOLUCIÓN AL ERROR EN LÍNEA 71 (Protección contra NULL en contacto.html) ***
+    // *** PROTECCIÓN CRÍTICA CONTRA EL ERROR NULL EN CONTACTO.HTML ***
     if (!productGrid) {
         console.log("No hay grilla de productos en esta página. Finalizando lógica de filtros.");
         return; 
