@@ -1,7 +1,10 @@
-// ** REGISTRO DEL SERVICE WORKER **
+// =========================================================
+// 1. REGISTRO DEL SERVICE WORKER (Debe ir fuera de DOMContentLoaded)
+// Esto asegura que la PWA sea detectable por el navegador.
+// =========================================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        // La ruta debe coincidir con la ubicación de sw.js (debe estar en la raíz del proyecto)
+        // La ruta debe ser absoluta, apuntando a la raíz del sitio de Vercel
         navigator.serviceWorker.register('/sw.js') 
             .then(registration => {
                 console.log('ServiceWorker registrado con éxito:', registration);
@@ -11,13 +14,59 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
-// ---------------------------------
 
 
+// =========================================================
+// 2. LÓGICA PWA DEL BOTÓN (Debe ir fuera de DOMContentLoaded)
+// Controla el botón "Instalar App".
+// =========================================================
+let deferredPrompt;
+const installButton = document.getElementById('install-button');
+
+// Ocultamos el botón al inicio, solo se mostrará si el navegador lo permite
+if (installButton) {
+    installButton.style.display = 'none';
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    // Si el navegador dispara el evento, mostramos el botón
+    if (installButton) {
+        installButton.style.display = 'block';
+    }
+});
+
+if (installButton) {
+    installButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Usuario aceptó la instalación PWA');
+                } else {
+                    console.log('Usuario rechazó la instalación PWA');
+                }
+                // Ocultamos el botón después de la interacción
+                installButton.style.display = 'none'; 
+                deferredPrompt = null;
+            });
+        }
+    });
+}
+
+
+// =========================================================
+// 3. LÓGICA DE FILTROS Y ORDENAMIENTO (Dentro de DOMContentLoaded)
+// =========================================================
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Soltech Store cargada correctamente. Filtros y lógica de productos activados.");
 
-    // 1. SELECTORES DE ELEMENTOS (Declaración Única de Variables)
+    // SELECTORES DE ELEMENTOS
     const productGrid = document.getElementById('product-grid');
     const productCards = Array.from(productGrid.getElementsByClassName('product-card'));
     
@@ -30,66 +79,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const applyFiltersBtn = document.getElementById('apply-filters-btn');
     const clearFiltersBtn = document.getElementById('clear-filters-btn');
     
-    // Declaración ÚNICA del botón de instalación
-    const installButton = document.getElementById('install-button');
-    let deferredPrompt; 
-
-    // --- LÓGICA PWA ---
-    
-    // Ocultamos el botón por defecto (el navegador lo mostrará si detecta PWA)
-    // Nota: Dejamos el display: block en el CSS si quieres que se vea al cargar.
-    // Opcional: installButton.style.display = 'none'; // Si quieres que JavaScript lo muestre
-    
-    window.addEventListener('beforeinstallprompt', (e) => {
-        // Solo guardamos el evento para dispararlo
-        e.preventDefault();
-        deferredPrompt = e;
-        // Si el navegador dispara el evento, mostramos el botón (si está oculto por defecto)
-        installButton.style.display = 'block'; 
-    });
-
-    installButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        if (deferredPrompt) {
-            // Dispara la ventana de instalación
-            deferredPrompt.prompt();
-            deferredPrompt = null;
-        }
-        // El botón queda visible para la siguiente recarga o si el navegador lo permite
-    });
-    // -------------------
-
-
-    // Escuchar el botón principal de aplicar filtros
+    // LISTENERS
     applyFiltersBtn.addEventListener('click', applyAllFilters);
+    sortOrder.addEventListener('change', sortProducts);
+    clearFiltersBtn.addEventListener('click', clearFilters);
     
     // Escuchar el evento Enter en los campos de texto
-    textFilter.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            applyAllFilters();
-        }
-    });
-    minPriceInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            applyAllFilters();
-        }
-    });
-    maxPriceInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            applyAllFilters();
-        }
+    const filterInputs = [textFilter, minPriceInput, maxPriceInput];
+    filterInputs.forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                applyAllFilters();
+            }
+        });
     });
 
-    // Escuchar el cambio en el orden (para aplicar inmediatamente)
-    sortOrder.addEventListener('change', sortProducts);
-    
-    // Escuchar el botón de limpiar filtros
-    clearFiltersBtn.addEventListener('click', clearFilters);
 
-
-    // 2. FUNCIONES PRINCIPALES DE FILTRADO
-
+    // FUNCIÓN PRINCIPAL DE FILTRADO
     function applyAllFilters() {
         const selectedCategory = categoryFilter.value;
         const searchText = textFilter.value.toLowerCase().trim();
@@ -103,10 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const description = card.querySelector('p').textContent.toLowerCase();
             const fullText = title + ' ' + description;
 
+            // Filtros booleanos
             const categoryMatch = selectedCategory === 'all' || category === selectedCategory;
             const priceMatch = price >= minPrice && price <= maxPrice;
             const textMatch = fullText.includes(searchText);
 
+            // Mostrar u ocultar
             if (categoryMatch && priceMatch && textMatch) {
                 card.style.display = 'flex'; 
             } else {
@@ -114,10 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
+        // Ordenar los productos visibles después del filtrado
         sortProducts();
     }
 
-    // 3. FUNCIÓN DE ORDENAMIENTO
+    // FUNCIÓN DE ORDENAMIENTO
     function sortProducts() {
         const order = sortOrder.value;
         const visibleCards = productCards.filter(card => card.style.display !== 'none');
@@ -137,12 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Reinsertar las tarjetas ordenadas en la grilla
         visibleCards.forEach(card => {
             productGrid.appendChild(card);
         });
     }
 
-    // 4. FUNCIÓN DE LIMPIEZA
+    // FUNCIÓN DE LIMPIEZA DE FILTROS
     function clearFilters() {
         categoryFilter.value = 'all';
         textFilter.value = '';
@@ -150,12 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
         maxPriceInput.value = '';
         sortOrder.value = 'none';
         
-        productCards.forEach(card => {
-            card.style.display = 'flex';
-        });
-
-        applyAllFilters();
+        applyAllFilters(); // Esto restablece la visibilidad y el orden
     }
     
+    // Aplicar filtros al inicio para asegurar el orden/visibilidad inicial
     applyAllFilters();
 });
