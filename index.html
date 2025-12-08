@@ -32,18 +32,41 @@
         </div>
     </header>
 
-    <section class="hero-banner">
-    <h1 class="neon-soltech">Soltech</h1> 
-    <h1>Tecnología con estilo</h1> 
-    <p>Equipos, accesorios y soluciones tech diseñadas para simplificar tu vida digital.</p>
-    <div class="contact-section">
-        <p>¿Consultas por envíos? 🚚</p>
-        <p>Haz clic abajo para hablar directamente con nosotros por WhatsApp y conocer el costo de tu envío.</p>
-        <a href="https://wa.me/5491132905944?text=Hola,%20tengo%20una%20consulta%20sobre%20env%C3%ADos%20a%20mi%20zona." target="_blank" class="cta-contact">
-            <i class="fab fa-whatsapp"></i> Consultar por Envío
-        </a>
-    </div>
-</section>
+    <section class="hero-carousel">
+        
+        <div class="carousel-container" id="hero-carousel-container">
+            
+            <div class="carousel-slide" data-slide="1">
+                <h1 class="neon-soltech">Soltech</h1>
+                <h2>3 CUOTAS SIN INTERÉS</h2> 
+                <p>¡Financiá tu tecnología! Aplicable a todos los productos de la tienda.</p>
+            </div>
+
+            <div class="carousel-slide" data-slide="2">
+                <h1 class="neon-soltech">Soltech</h1>
+                <h2>10% DE DESCUENTO</h2>
+                <p>Obtené un 10% de ahorro extra pagando en efectivo o por transferencia bancaria.</p>
+            </div>
+
+        </div>
+        
+        <div class="carousel-dots" id="carousel-dots">
+            <span class="dot active" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+
+        
+    </section>
+
+    <section class="contact-main">
+        <div class="contact-section">
+            <p>¿Consultas por envíos? 🚚</p>
+            <p>Haz clic abajo para hablar directamente con nosotros por WhatsApp y conocer el costo de tu envío.</p>
+            <a href="https://wa.me/5491132905944?text=Hola,%20tengo%20una%20consulta%20sobre%20env%C3%ADos%20a%20mi%20zona." target="_blank" class="cta-contact">
+                <i class="fab fa-whatsapp"></i> Consultar por Envío
+            </a>
+        </div>
+    </section>  
 
     <main class="content-container">
         
@@ -99,24 +122,25 @@
         <section class="product-grid" id="product-grid">
 
             <script>
+                // Variable de WhatsApp para el botón genérico (debe estar antes del primer uso)
                 const wpLink = "https://wa.me/5491132905944?text=Hola,%20me%20interesa%20un%20producto%20de%20tu%20tienda.";
             </script>
 
-            <div class="product-card" data-category="audio" data-price="30000">
+            <div class="product-card" data-category="audio" data-price="35000">
                 <span class="tag tech-tag">Audio</span>
                 <img src="images/auriculares.jpg" alt="Headset Gamer Aimzone negro microfono desmontable">
-                <h4>Headset Gamer Aimzone negro microfono desmontable</h4>
-                <p>Audio Premium: Drivers de 50 mm con sonido envolvente y cristalino. Micrófono: Desmontable.</p>
-                <div class="price">$30.000</div>
+                <h4>Auriculares con Micrófono Gamer Targa Odissey 300 Headset Led Flexible Over Ear</h4>
+                <p>Audio Premium: Driver de 40 mm de alta precisión con aislamiento de ruido externo. Micrófono: Integrado y flexible para ajuste de ángulo. Comodidad: Almohadillas de espuma viscoelástica transpirable. Conectividad: Conector dual 3.5mm + USB y cable de 2 metros.</p>
+                <div class="price">$35.000</div>
                 <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
             </div>
 
-            <div class="product-card" data-category="computacion" data-price="370000">
+            <div class="product-card" data-category="computacion" data-price="400000">
                 <span class="tag tech-tag">Computación</span>
-                <img src="images/notebook.jpg" alt="Notebook Celeron 14.1&quot; 4GB 128 GB SSD Philco N14P4020">
-                <h4>Notebook Celeron 14.1" 4GB 128 GB SSD Philco N14P4020</h4>
-                <p>Rendimiento Rápido: Procesador Celeron, 4 GB de RAM y disco SSD de 128 GB. Autonomía: Batería de 5000 mAh.</p>
-                <div class="price">$370.000</div>
+                <img src="images/notebook.jpg" alt="Notebook Exo 14.1&quot; 4GB 128 GB SSD Philco N14P4020">
+                <h4>Notebook Exo 14´ Intel N4020 4GB 128SSD RX38 Windows 11</h4>
+                <p>Rendimiento: Procesador Intel Celeron N4020, 4 GB de RAM y disco SSD de 128 GB. Pantalla: Display de 14 pulgadas con resolución HD. Autonomía: Batería de 7.4V y 5000 mAh. Sistema Operativo: Viene con Windows 11.</p>
+                <div class="price">$400.000</div>
                 <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
             </div>
             
@@ -129,7 +153,97 @@
                 <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
             </div>
 
-        </section>
+            <div class="product-card" data-category="juguetes" data-price="150000">
+                <span class="tag tech-tag">Juguetes</span>
+                <img src="images/robot.jpg" alt="robot educativo programable">
+                <h4>Xtrem Bots Figura 17 cm My First Programmable Robot Andy a Control Panel</h4>
+                <p>Robot Programable: Figura de 17 cm, ideal para iniciarse en la programación a partir de 4 años. Fácil de Programar: Permite hasta 30 acciones programables. Funciones Interactivas: Incluye luz LED y modo baile.</p>
+                <div class="price">$150.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="juguetes" data-price="20000">
+                <span class="tag tech-tag">Juguetes</span>
+                <img src="images/cacatus.jpg" alt="cacatus">
+                <h4>Cactus Bailarín Interactivo con Canciones y Luces</h4>
+                <p>Juguete Interactivo: Canta, baila y repite frases. Diseño divertido. Desarrolla la motricidad fina y la atención.</p>
+                <div class="price">$20.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="audio" data-price="22000">
+                <span class="tag tech-tag">Audio</span>
+                <img src="images/aurisadmi.jpg" alt="Auriculares Admiral AD-F9 Negro">
+                <h4>Auriculares Admiral AD-F9 Negro</h4>
+                <p>Audio Inalámbrico: Diseño In Ear y altavoz de 8 mm. Conectividad: Bluetooth V5.3 con rango de 10 a 20 metros. Autonomía: 5 a 6 horas de reproducción. Carga: Estuche con batería de 800 mAh.</p>
+                <div class="price">$22.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="cocina" data-price="85000">
+                <span class="tag tech-tag">Cocina</span>
+                <img src="images/freidora.jpg" alt="Freidora de Aire Kanji Home KJHAF1404 4 Litros Digital">
+                <h4>Freidora de Aire Kanji Home KJHAF1404 4 Litros Digital</h4>
+                <p>Tecnología de Cocción: Circulación de aire caliente de alta velocidad. Capacidad: Canasta de 4 litros. Potencia y Control: 1400 W con temperatura regulable. Beneficio Saludable: Usa significativamente menos aceite.</p>
+                <div class="price">$85.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="bicicletas" data-price="105000">
+                <span class="tag tech-tag">Bicicletas</span>
+                <img src="images/bicinena.jpg" alt="Bicicleta Infantil Nathor R12 Flower">
+                <h4>Bicicleta Infantil Nathor R12 Flower</h4>
+                <p>Diseño Seguro: Rodado 12, ideal para 3 años+. Aprendizaje: Incluye ruedas laterales y limitador de giro. Ergonomía: Asiento y manubrio regulables. Frenado: Freno de tambor.</p>
+                <div class="price">$105.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="cocina" data-price="65000">
+                <span class="tag tech-tag">Cocina</span>
+                <img src="images/licuadora.jpg" alt="Licuadora Mondial Pratic Power 550W 1,6Lts L-98-W Blanco">
+                <h4>Licuadora Mondial Pratic Power 550W 1,6Lts L-98-W Blanco</h4>
+                <p>Potencia y Velocidad: 550W con 2 velocidades más Pulsar. Cuchillas: 4 cuchillas de acero inoxidable. Vaso: Fabricado en San Cristal. Capacidad: Jarra de 2.2 litros.</p>
+                <div class="price">$65.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="cocina" data-price="45000">
+                <span class="tag tech-tag">Cocina</span>
+                <img src="images/pava.jpg" alt="Pava Eléctrica Kanji Home con Corte Mate">
+                <h4>Pava Eléctrica Kanji Home con Corte Mate</h4>
+                <p>Funciones Clave: Incluye función de Corte Mate. Capacidad: Jarra de 1.8 litros. Potencia: 1500 Watts. Diseño: Fabricada en acero inoxidable.</p>
+                <div class="price">$45.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="tv" data-price="320000">
+                <span class="tag tech-tag">TV</span>
+                <img src="images/teleroku.jpg" alt="Smart TV LED 32” HD AOC Roku TV 32S5135/77G">
+                <h4>Smart TV LED 32” HD AOC Roku TV 32S5135/77G</h4>
+                <p>Imagen: Pantalla de 32 pulgadas HD. Smart TV: Funciona con Roku TV. Conectividad: 3 entradas HDMI y 1 puerto USB. Funciones Inteligentes: Búsqueda rápida de contenido.</p>
+                <div class="price">$320.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="audio" data-price="200000">
+                <span class="tag tech-tag">Audio</span>
+                <img src="images/tocadiscos.jpg" alt="Tocadiscos Gadnic TD32 Bluetooth Portátil 3 Velocidades Aux-In RCA">
+                <h4>Tocadiscos Gadnic TD32 Bluetooth Portátil 3 Velocidades Aux-In RCA</h4>
+                <p>Diseño: Tocadiscos portátil con look vintage. Reproducción: Compatible con vinilos de 7, 10 y 12 pulgadas. Velocidades: 33, 45 y 78 rpm. Conectividad: Bluetooth y altavoces estéreo.</p>
+                <div class="price">$200.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+
+            <div class="product-card" data-category="climatizacion" data-price="800000">
+                <span class="tag tech-tag">Climatización</span>
+                <img src="images/aire.jpg" alt="Aire Acondicionado Sansei Split Frio/calor 2365 Frigorías Blanco">
+                <h4>Aire Acondicionado Sansei Split Frio/calor 2365 Frigorías Blanco</h4>
+                <p>Climatización: Equipo Split Frío/Calor de 2365 Frigorías. Tecnología: On-Off y refrigerante R410A. Eficiencia: Alta eficiencia energética Clase A. Funciones: Timer y Función Sueño.</p>
+                <div class="price">$800.000</div>
+                <a href="javascript:void(0);" onclick="window.open(wpLink, '_blank')" class="add-to-cart-btn"><i class="fab fa-whatsapp"></i> CONSULTAR AL WP</a>
+            </div>
+            
+            </section>
     </main>
     
     <footer>

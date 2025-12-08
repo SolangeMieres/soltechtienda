@@ -1,6 +1,5 @@
 // =========================================================
 // 1. REGISTRO DEL SERVICE WORKER (Debe ir fuera de DOMContentLoaded)
-// Esto asegura que la PWA sea detectable por el navegador.
 // =========================================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -18,7 +17,6 @@ if ('serviceWorker' in navigator) {
 
 // =========================================================
 // 2. LÓGICA PWA DEL BOTÓN (Debe ir fuera de DOMContentLoaded)
-// Controla el botón "Instalar App".
 // =========================================================
 let deferredPrompt;
 const installButton = document.getElementById('install-button');
@@ -61,16 +59,73 @@ if (installButton) {
 
 
 // =========================================================
-// 3. LÓGICA DE FILTROS Y ORDENAMIENTO (Dentro de DOMContentLoaded)
+// 3. LÓGICA DEL CARRUSEL AUTOMÁTICO
+// Debe ir fuera de DOMContentLoaded para inicializarse inmediatamente
 // =========================================================
+
+let currentSlide = 0;
+const totalSlides = 2; // Hay 2 slides de promoción
+
+function showSlide(index) {
+    const container = document.getElementById('hero-carousel-container');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+
+    if (!container || dots.length === 0) return; 
+
+    // Cálculo para asegurar el loop
+    currentSlide = index % totalSlides; 
+    if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    }
+
+    // Mueve el carrusel: Ajuste para 2 slides (0% y -100%)
+    const offset = -currentSlide * 100 / totalSlides; // Se ajusta a la división del width en CSS
+    container.style.transform = `translateX(${offset}%)`;
+
+    // Actualiza los puntos indicadores
+    dots.forEach((dot, i) => {
+        dot.classList.remove('active');
+        if (i === currentSlide) {
+            dot.classList.add('active');
+        }
+    });
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+// Inicializar el carrusel al cargar y establecer el intervalo automático
+window.addEventListener('load', () => {
+    // Escuchar clics en los puntos para navegación manual
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            // El data-slide es 1 o 2, le restamos 1 para el índice 0 o 1
+            const slideIndex = parseInt(dot.getAttribute('data-slide')) - 1;
+            showSlide(slideIndex);
+        });
+    });
+
+    // Iniciar carrusel automático
+    setInterval(nextSlide, 5000); // Cambia de slide cada 5 segundos
+});
+
+// Llamamos showSlide(0) al inicio para asegurar que el primer slide se muestre correctamente
+// Usamos DOMContentLoaded para garantizar que los elementos HTML existan.
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Soltech Store cargada correctamente. Filtros y lógica de productos activados.");
+    showSlide(0);
+
+    // =========================================================
+    // 4. LÓGICA DE FILTROS Y ORDENAMIENTO (Solo para index.html)
+    // =========================================================
+    console.log("Soltech Store cargada correctamente. Inicializando filtros.");
 
     // SELECTORES DE ELEMENTOS
     const productGrid = document.getElementById('product-grid');
     
-    // *** PROTECCIÓN CRÍTICA CONTRA NULL (Soluciona el error en contacto.html) ***
-    // Si no hay grilla de productos en la página (ej: página de Contacto), salimos.
+    // *** PROTECCIÓN CRÍTICA CONTRA NULL ***
+    // Si no hay grilla de productos (ej: en contacto.html), salimos.
     if (!productGrid) {
         console.log("No hay grilla de productos en esta página. Finalizando lógica de filtros.");
         return; 
